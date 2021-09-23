@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <!-- Linking CSS Files -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <h1 class="page-title">Settings</h1>
+        <div class="settings-container">
+            <form name="mySettings">
+                <h2>Timer Settings</h2>
+                <label for="focus-duration">Focus Duration (mins)</label>
+                <input type="number" id="focus-duration" name="focus-duration" min="1" max="60">
+                <br>
+                <button type="submit" onclick="applyChanges()">Apply</button>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <nav class="nav-bar">
+            <a href="index.html">Pomodoro Timer</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+    </footer>
+    <!-- Linking JavaScript Files -->
+    <script src="main.js"></script>
+</body>
+</html>
