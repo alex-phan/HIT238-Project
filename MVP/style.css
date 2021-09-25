@@ -115,6 +115,14 @@ footer {
     display: none;
 }
 
+/* Mobile View */
+@media (max-width: 1024px) {
+    .timer {
+        width: 24rem;
+        height: 24rem;
+        border-radius: 12rem;
+    }
+}
 
 /* Animation */
 @keyframes fade-in {
