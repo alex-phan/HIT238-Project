@@ -25,19 +25,18 @@ var f_minutes = "25";
 var s_minutes = "05";
 var l_minutes = "15";
 var seconds = "00";
-var pomo_cycle = 1;
+var pomo_cycle = 4;
 
 // Timer Script
 var pomo_log = 0; // record how many pomodoros have elapsed
 document.getElementById("pomo-log").innerHTML = pomo_log;
 
-var pomo_count = 0;
-var set = [];
-if (pomo_count < pomo_cycle) { // determine when to have a long break
+var pomo_count = 1;
+var set;
+if (pomo_count !== pomo_cycle) { // determine starting set
     set = s_pomodoro;
 } else {
     set = l_pomodoro;
-    pomo_count = 0; // reset pomodoro count
 }
 
 let i = 0;
@@ -100,12 +99,12 @@ while (set[i]) {
 
                         clearInterval(secs_interval);
 
-                        if (i + 1 < set.length){
+                        if (i + 1 < set.length) {
                             i++; // go to next timer
                         } else {
                             i--; // go to previous timer
                         }
-                        
+
                         renderTimer(set[i]);
                         
                         if (set[i] == "focus") {
@@ -114,13 +113,20 @@ while (set[i]) {
 
                             pomo_log++;
                             document.getElementById("pomo-log").innerHTML = pomo_log;
+
                             pomo_count++;
+                            if (pomo_count < pomo_cycle) { // decide if the next break is a long break
+                                set = s_pomodoro;
+                            } else {
+                                set = l_pomodoro;
+                                pomo_cycle += pomo_cycle; // add another cycle
+                            }
                         } else {
                             hide("pause-button");
                             show("start-button");
                         }
                     }
-
+                    
                     secs = 60; // reset seconds
                 }
             }
@@ -154,6 +160,7 @@ while (set[i]) {
             show("start-button");
 
             paused = false;
+
             clearInterval(secs_interval);
             renderTimer(set[i]);
         }
@@ -164,15 +171,22 @@ while (set[i]) {
             hide("skip-button");
             show("start-button");
 
-            pomo_count++;
             pomo_log++;
             document.getElementById("pomo-log").innerHTML = pomo_log;
+
+            pomo_count++;
+            if (pomo_count < pomo_cycle) { // decide if the next break is a long break
+                set = s_pomodoro;
+            } else {
+                set = l_pomodoro;
+                pomo_cycle += pomo_cycle; // add another cycle
+            }
+
             clearInterval(secs_interval);
             i--;
             renderTimer(set[i]);
         }
     }
-    
     renderTimer(set[i]);
     startTimer()
 }

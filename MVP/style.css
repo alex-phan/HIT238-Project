@@ -28,7 +28,7 @@ header {
 }
 
 .nav-bar a {
-    margin: 0 24px;
+    margin: 0 36px;
     display: inline-block;
     text-decoration: none;
     color: black;
@@ -66,8 +66,9 @@ h1 {
 }
 
 footer {
+    display: none;
     margin-top: auto; /* for fixed footer */
-    font-size: 12px;
+    padding: 16px 0;
     text-align: center;
 }
 
@@ -133,10 +134,22 @@ footer {
 
 /* Mobile View */
 @media (max-width: 1024px) {
+    header {
+        display: none;
+    }
+
+    h1 {
+        font-size: 42px;
+    }
+
     .timer {
         width: 24rem;
         height: 24rem;
         border-radius: 12rem;
+    }
+
+    footer {
+        display: inline-block;
     }
 }
 
