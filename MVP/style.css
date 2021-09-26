@@ -95,15 +95,26 @@ footer {
     padding: 12px 36px;
     font-size: 16px;
     color: white;
-    background-color: black;
     border: none;
     border-radius: 4px;
 }
 
 .controls button:hover {
-    background-color: brown;
+    background-color: black;
     transition: .1s;
     cursor: pointer;
+}
+
+.continue-button {
+    background-color: green;
+}
+
+.interrupt-button {
+    background-color: brown;
+}
+
+.next-button {
+    background-color: blue;
 }
 
 /* Show/Hide */
