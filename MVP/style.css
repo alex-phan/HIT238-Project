@@ -85,7 +85,7 @@ footer {
     border-radius: 15rem;
 }
 
-.timer p {
+.clock {
     padding: 16px;
     font-size: 48px;
 }
@@ -114,7 +114,12 @@ footer {
 }
 
 .next-button {
-    background-color: blue;
+    background-color: navy;
+}
+
+.pomo-log {
+    padding: 16px;
+    font-size: 16px;
 }
 
 /* Show/Hide */

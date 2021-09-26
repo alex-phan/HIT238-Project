@@ -19,46 +19,59 @@ function hide(elem) {
 }
 
 // Timer Settings (temporary)
-const timer_type = ["focus", "short", "long"]
+const s_pomodoro = ["focus", "short"];
+const l_pomodoro = ["focus", "long"];
 var f_minutes = "25";
 var s_minutes = "05";
 var l_minutes = "15";
 var seconds = "00";
+var pomo_cycle = 1;
 
 // Timer Script
-for (var i = 0; i < timer_type.length; i++) {
+var pomo_log = 0; // record how many pomodoros have elapsed
+document.getElementById("pomo-log").innerHTML = pomo_log;
+
+var pomo_count = 0;
+var set = [];
+if (pomo_count < pomo_cycle) { // determine when to have a long break
+    set = s_pomodoro;
+} else {
+    set = l_pomodoro;
+    pomo_count = 0; // reset pomodoro count
+}
+
+let i = 0;
+while (set[i]) {
     function renderTimer(type) {
-        if (i == 0) {
+        if (type == "focus") {
             document.getElementById("type").innerHTML = "to Focus";
             document.getElementById("minutes").innerHTML = f_minutes;
-        } else if (type == 1) {
+        } else if (type == "short") {
             document.getElementById("type").innerHTML = "for a Short Break";
             document.getElementById("minutes").innerHTML = s_minutes;
-        } else if (type == 2) {
+        } else if (type == "long") {
             document.getElementById("type").innerHTML = "for a Long Break";
             document.getElementById("minutes").innerHTML = l_minutes;
         }
         document.getElementById("seconds").innerHTML = seconds;
     }
 
-    renderTimer(i);
-
     // Controls
     document.getElementById("start-button").onclick = function startTimer() {
         playAudio("media/snap.wav");
         
         hide("start-button");
-        if (i == 0) {
+        if (set[i] == "focus") {
             show("pause-button");
         } else {
             show("skip-button");
         }
 
-        if (i == 0) {
+        if (set[i] == "focus") {
             var mins = parseInt(f_minutes);
-        } else if (i == 1) {
+        } else if (set[i] == "short") {
             var mins = parseInt(s_minutes);
-        } else if (i == 2) {
+        } else if (set[i] == "long") {
             var mins = parseInt(l_minutes);
         }
         var secs = 60;
@@ -86,12 +99,32 @@ for (var i = 0; i < timer_type.length; i++) {
                         playAudio("media/alarm.wav");
 
                         clearInterval(secs_interval);
+
+                        if (i + 1 < set.length){
+                            i++; // go to next timer
+                        } else {
+                            i--; // go to previous timer
+                        }
+                        
+                        renderTimer(set[i]);
+                        
+                        if (set[i] == "focus") {
+                            hide("skip-button");
+                            show("start-button");
+
+                            pomo_log++;
+                            document.getElementById("pomo-log").innerHTML = pomo_log;
+                            pomo_count++;
+                        } else {
+                            hide("pause-button");
+                            show("start-button");
+                        }
                     }
 
                     secs = 60; // reset seconds
                 }
             }
-        }, 10); // test interval; actual interval = 1000ms = 1s
+        }, 1); // test interval; actual interval = 1000ms = 1s
 
         document.getElementById("pause-button").onclick = function pauseTimer() {
             playAudio("media/snap.wav");
@@ -122,8 +155,24 @@ for (var i = 0; i < timer_type.length; i++) {
 
             paused = false;
             clearInterval(secs_interval);
-            renderTimer(i);
+            renderTimer(set[i]);
+        }
+
+        document.getElementById("skip-button").onclick = function skipTimer() {
+            playAudio("media/snap.wav");
+
+            hide("skip-button");
+            show("start-button");
+
+            pomo_count++;
+            pomo_log++;
+            document.getElementById("pomo-log").innerHTML = pomo_log;
+            clearInterval(secs_interval);
+            i--;
+            renderTimer(set[i]);
         }
     }
-    startTimer();
+    
+    renderTimer(set[i]);
+    startTimer()
 }
