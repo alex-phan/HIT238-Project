@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Alex Phan">
     <meta name="description" content="HIT238 Sprint 3">
-    <title>Pomodoro Timer</title>
+    <title>Settings</title>
+    <link href="media/images/favicon.png" rel="icon">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -21,16 +22,42 @@
                 <span class="caption">Timer</span>
             </a>
             <a href="projects.html">
-                <ion-icon name="folder"></ion-icon>
+                <ion-icon name="file-tray-full"></ion-icon>
                 <span class="caption">Projects</span>
+            </a>
+            <a href="tools.html">
+                <ion-icon name="shapes"></ion-icon>
+                <span class="caption">Tools</span>
             </a>
             <a href="settings.html" aria-current="page">
                 <ion-icon name="settings"></ion-icon>
                 <span class="caption">Settings</span>
             </a>
+            
         </nav>
         <hr>
     </header>
+    <main class="content">
+        <h1>Settings</h1>
+        <form class="timer-settings">
+            <h2>Timer Settings (mins)</h2>
+            <hr>
+            <label for="focus-duration">Focus Timer Duration</label>
+            <input type="number" id="focus-duration" name="focus-duration" min="1">
+            <hr>
+            <label for="short-duration">Short Timer Duration</label>
+            <input type="number" id="short-duration" name="short-duration" min="1">
+            <hr>
+            <label for="long-duration">Long Timer Duration</label>
+            <input type="number" id="long-duration" name="long-duration" min="1">
+            <hr>
+            <hr>
+            <label for="long-interval">Long Timer Interval</label>
+            <input type="number" id="long-interval" name="long-interval" min="1">
+            <hr>
+        </form>
+        <button id="apply-settings" class="apply-button" onclick="location.reload()">Apply</button>
+    </main>
     <footer>
         <hr>
         <nav class="nav-bar">
@@ -39,8 +66,12 @@
                 <span class="caption">Timer</span>
             </a>
             <a href="projects.html">
-                <ion-icon name="folder"></ion-icon>
+                <ion-icon name="file-tray-full"></ion-icon>
                 <span class="caption">Projects</span>
+            </a>
+            <a href="tools.html">
+                <ion-icon name="shapes"></ion-icon>
+                <span class="caption">Tools</span>
             </a>
             <a href="settings.html" aria-current="page">
                 <ion-icon name="settings"></ion-icon>

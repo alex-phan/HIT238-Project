@@ -18,10 +18,31 @@ function hide(elem) {
     document.getElementById(elem).classList.add("hide");
 }
 
+// Local Storage
+// var f_duration = document.getElementById("focus-duration").value;
+// var s_duration = document.getElementById("short-duration").value;
+// var l_duration = document.getElementById("long-duration").value;
+// var l_interval = document.getElementById("long-interval").value;
+
+// const timer_settings = {
+//     f_duration: f_duration,
+//     s_duration: s_duration,
+//     l_duration: l_duration,
+//     l_interval: l_interval,
+// }
+
+// let set_data = localStorage.setItem("current-settings", JSON.stringify(timer_settings));
+// let get_data = JSON.parse(localStorage.getItem("current-settings"));
+
+// document.getElementById("focus-duration").value = get_data.f_duration;
+// document.getElementById("short-duration").value = s_duration;
+// document.getElementById("long-duration").value = l_duration;
+// document.getElementById("long-interval").value = l_interval;
+
 // Timer Settings (temporary)
 const s_pomodoro = ["focus", "short"];
 const l_pomodoro = ["focus", "long"];
-var f_minutes = "25";
+var f_minutes = "30";
 var s_minutes = "05";
 var l_minutes = "15";
 var seconds = "00";
@@ -54,10 +75,9 @@ while (set[i]) {
         }
         document.getElementById("seconds").innerHTML = seconds;
     }
-
-    // Controls
+    
     document.getElementById("start-button").onclick = function startTimer() {
-        playAudio("media/snap.wav");
+        playAudio("media/sounds/snap.wav");
         
         hide("start-button");
         if (set[i] == "focus") {
@@ -65,7 +85,7 @@ while (set[i]) {
         } else {
             show("skip-button");
         }
-
+    
         if (set[i] == "focus") {
             var mins = parseInt(f_minutes);
         } else if (set[i] == "short") {
@@ -75,7 +95,7 @@ while (set[i]) {
         }
         var secs = 60;
         document.getElementById("seconds").innerHTML = "0" + 0; // render 60 as 00
-
+    
         var paused = false;
         var secs_interval = setInterval(function() {
             if (!paused) {
@@ -86,7 +106,7 @@ while (set[i]) {
                     }
                     document.getElementById("minutes").innerHTML = mins;
                 }
-
+    
                 secs--; // decrement seconds by one
                 if (secs < 10) {
                     secs = "0" + secs; // correct the formatting
@@ -95,30 +115,30 @@ while (set[i]) {
                 
                 if (secs <= 0) {
                     if (mins <= 0) {
-                        playAudio("media/alarm.wav");
-
+                        playAudio("media/sounds/alarm.wav");
+    
                         clearInterval(secs_interval);
-
+    
                         if (i + 1 < set.length) {
                             i++; // go to next timer
                         } else {
                             i--; // go to previous timer
                         }
-
+    
                         renderTimer(set[i]);
                         
                         if (set[i] == "focus") {
                             hide("skip-button");
                             show("start-button");
-
+    
                             pomo_log++;
                             document.getElementById("pomo-log").innerHTML = pomo_log;
-
+    
                             pomo_count++;
                             if (pomo_count < pomo_cycle) { // decide if the next break is a long break
                                 set = s_pomodoro;
                             } else {
-                                set = l_pomodoro;
+                                set = l_pomodoro; // next break is a long break
                                 pomo_cycle += pomo_cycle; // add another cycle
                             }
                         } else {
@@ -131,62 +151,63 @@ while (set[i]) {
                 }
             }
         }, 1); // test interval; actual interval = 1000ms = 1s
-
+    
         document.getElementById("pause-button").onclick = function pauseTimer() {
-            playAudio("media/snap.wav");
-
+            playAudio("media/sounds/snap.wav");
+    
             hide("pause-button");
             show("resume-button");
             show("reset-button");
-
+    
             paused = true;
         }
-
+    
         document.getElementById("resume-button").onclick = function resumeTimer() {
-            playAudio("media/snap.wav");
-
+            playAudio("media/sounds/snap.wav");
+    
             hide("resume-button");
             hide("reset-button");
             show("pause-button");
-
+    
             paused = false;
         }
-
+    
         document.getElementById("reset-button").onclick = function resetTimer() {
-            playAudio("media/snap.wav");
-
+            playAudio("media/sounds/snap.wav");
+    
             hide("resume-button");
             hide("reset-button");
             show("start-button");
-
+    
             paused = false;
-
+    
             clearInterval(secs_interval);
             renderTimer(set[i]);
         }
-
+    
         document.getElementById("skip-button").onclick = function skipTimer() {
-            playAudio("media/snap.wav");
-
+            playAudio("media/sounds/snap.wav");
+    
             hide("skip-button");
             show("start-button");
-
+    
             pomo_log++;
             document.getElementById("pomo-log").innerHTML = pomo_log;
-
+    
             pomo_count++;
             if (pomo_count < pomo_cycle) { // decide if the next break is a long break
                 set = s_pomodoro;
             } else {
-                set = l_pomodoro;
+                set = l_pomodoro; // next break is a long break
                 pomo_cycle += pomo_cycle; // add another cycle
             }
-
+    
             clearInterval(secs_interval);
             i--;
             renderTimer(set[i]);
         }
     }
+
     renderTimer(set[i]);
-    startTimer()
+    startTimer();
 }

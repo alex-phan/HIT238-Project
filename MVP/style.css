@@ -28,7 +28,7 @@ header {
 }
 
 .nav-bar a {
-    margin: 0 36px;
+    margin: 0 24px;
     display: inline-block;
     text-decoration: none;
     color: black;
@@ -53,16 +53,20 @@ header {
     display: block;
 }
 
-h1 {
-    padding: 16px;
+h1, h2 {
     font-family: "Lobster", "cursive";
-    font-size: 60px;
-    text-align: center;
     color: brown;
 }
 
+h1 {
+    padding: 16px;
+    font-size: 60px;
+    text-align: center;
+}
+
 .content {
-    animation: fade-in linear 1s;
+    animation: fade-in linear .5s;
+    text-align: center;
 }
 
 footer {
@@ -78,21 +82,17 @@ footer {
     display:flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     width: 30rem;
     height: 30rem;
+    align-items: center;
+    font-size: 48px;
     text-align: center;
     border: 2px solid black;
     border-radius: 15rem;
 }
 
-.clock {
-    padding: 16px;
-    font-size: 48px;
-}
-
 .controls button {
-    margin: 16px;
+    margin: 36px 12px;
     padding: 12px 36px;
     font-size: 16px;
     color: white;
@@ -100,7 +100,7 @@ footer {
     border-radius: 4px;
 }
 
-.controls button:hover {
+.controls button:hover, .apply-button:hover {
     background-color: black;
     transition: .1s;
     cursor: pointer;
@@ -119,8 +119,29 @@ footer {
 }
 
 .pomo-log {
-    padding: 16px;
     font-size: 16px;
+}
+
+/* Settings */
+.timer-settings {
+    margin: auto;
+    width: 25%;
+    text-align:left;
+}
+
+.timer-settings input {
+    float: right;
+    width: 64px;
+    text-align:center;
+}
+
+.apply-button {
+    width: 25%;
+    padding: 16px 32px;
+    color: white;
+    background-color: brown;
+    border-style: none;
+    border-radius: 4rem;
 }
 
 /* Show/Hide */
@@ -133,23 +154,39 @@ footer {
 }
 
 /* Mobile View */
+@media (max-width: 767px) {
+    h1 {
+        font-size: 45px;
+    }
+
+    .timer {
+        width: 20rem;
+        height: 20rem;
+        border-radius: 10rem;
+    }
+
+    .pomo-log {
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 1024px) {
     header {
         display: none;
     }
 
-    h1 {
-        font-size: 42px;
-    }
-
-    .timer {
-        width: 24rem;
-        height: 24rem;
-        border-radius: 12rem;
-    }
-
     footer {
         display: inline-block;
+    }
+
+    .nav-bar a {
+        margin: 0 16px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .timer-settings {
+        width: 85%;
     }
 }
 
