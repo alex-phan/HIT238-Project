@@ -64,13 +64,13 @@ let i = 0;
 while (set[i]) {
     function renderTimer(type) {
         if (type == "focus") {
-            document.getElementById("type").innerHTML = "to Focus";
+            document.getElementById("timer-type").innerHTML = "to Focus";
             document.getElementById("minutes").innerHTML = f_minutes;
         } else if (type == "short") {
-            document.getElementById("type").innerHTML = "for a Short Break";
+            document.getElementById("timer-type").innerHTML = "for a Short Break";
             document.getElementById("minutes").innerHTML = s_minutes;
         } else if (type == "long") {
-            document.getElementById("type").innerHTML = "for a Long Break";
+            document.getElementById("timer-type").innerHTML = "for a Long Break";
             document.getElementById("minutes").innerHTML = l_minutes;
         }
         document.getElementById("seconds").innerHTML = seconds;
