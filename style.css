@@ -75,10 +75,6 @@ h1, h2, h3, h4, h5, h6 {
     opacity: .5;
 }
 
-.navbar ion-icon {
-    font-size: 32px;
-}
-
 .caption {
     display: block;
 }
@@ -181,7 +177,15 @@ button:hover {
     }
 
     .navbar a {
-        margin: 16px;
+        margin: 8px 32px 0 32px;
+    }
+
+    .navbar ion-icon {
+        font-size: 24px;
+    }
+
+    .caption {
+        font-size: 12px;
     }
 }
 
@@ -225,10 +229,16 @@ button:hover {
     }
 
     .navbar a {
-        margin: 16px 64px;
+        margin: 8px 64px 0 64px;
     }
 
-    
+    .navbar ion-icon {
+        font-size: 32px;
+    }
+
+    .caption {
+        font-size: 16px;
+    }
 }
 
 /* Animation */
