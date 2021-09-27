@@ -11,7 +11,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <!-- Main CSS -->
+    <!-- CSS Files -->
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
@@ -20,6 +20,7 @@
     </header>
     <main class="content">
         <h1 class="page-title">Time <span id="timer-type">to Focus</span></h1>
+        <p style="text-align: center;">Speed = 100 for Demonstration</p>
         <div class="timer">
             <p class="clock"><span id="minutes"></span>:<span id="seconds"></span></p>
             <div class="controls">
@@ -31,6 +32,12 @@
             </div>
             <p class="pomo-log"><span id="pomo-log"></span> Pomodoro(s) Elapsed</p>
         </div>
+
+        <!-- Load Data (temporary solution) -->
+        <div id="focus-duration"></div>
+        <div id="short-duration"></div>
+        <div id="long-duration"></div>
+        <div id="long-interval"></div>
     </main>
     <footer class="footer">
         <nav class="navbar">
@@ -55,7 +62,7 @@
 
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <!-- Main JavaScript -->
-    <script src="main.js"></script>
+    <!-- JavaScript Files -->
+    <script src="scripts/main.js"></script>
 </body>
 </html>

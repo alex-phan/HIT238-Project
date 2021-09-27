@@ -172,11 +172,15 @@ button:hover {
         margin: 16px 0;
     }
 
-    .header hr, .settings {
+    .pomo-log {
+        font-size: 14px;
+    }
+
+    .settings {
         width: 95%;
     }
 
-    .navbar a{
+    .navbar a {
         margin: 16px;
     }
 }
@@ -212,7 +216,11 @@ button:hover {
         margin: 32px 0;
     }
 
-    .header hr, .settings {
+    .pomo-log {
+        font-size: 16px;
+    }
+
+    .settings {
         width: 50%;
     }
 

@@ -19,34 +19,50 @@ function hide(elem) {
 }
 
 // Local Storage
-// var f_duration = document.getElementById("focus-duration").value;
-// var s_duration = document.getElementById("short-duration").value;
-// var l_duration = document.getElementById("long-duration").value;
-// var l_interval = document.getElementById("long-interval").value;
+function updateSettings() {
+    f_duration = document.getElementById("focus-duration").value;
+    s_duration = document.getElementById("short-duration").value;
+    l_duration = document.getElementById("long-duration").value;
+    l_interval = document.getElementById("long-interval").value;
 
-// const timer_settings = {
-//     f_duration: f_duration,
-//     s_duration: s_duration,
-//     l_duration: l_duration,
-//     l_interval: l_interval,
-// }
+    const timer_settings = {
+        f_duration: f_duration,
+        s_duration: s_duration,
+        l_duration: l_duration,
+        l_interval: l_interval,
+    }
 
-// let set_data = localStorage.setItem("current-settings", JSON.stringify(timer_settings));
-// let get_data = JSON.parse(localStorage.getItem("current-settings"));
+    localStorage.setItem("custom-settings", JSON.stringify(timer_settings));
+}
 
-// document.getElementById("focus-duration").value = get_data.f_duration;
-// document.getElementById("short-duration").value = s_duration;
-// document.getElementById("long-duration").value = l_duration;
-// document.getElementById("long-interval").value = l_interval;
+function applySettings() {
+    location.reload();
+    updateSettings();
+}
 
-// Timer Settings (temporary)
+var get_data = JSON.parse(localStorage.getItem("custom-settings"));
+
+document.getElementById("focus-duration").defaultValue = get_data.f_duration;
+document.getElementById("short-duration").defaultValue = get_data.s_duration;
+document.getElementById("long-duration").defaultValue = get_data.l_duration;
+document.getElementById("long-interval").defaultValue = get_data.l_interval;
+
+// Timer Settings
+function formatTimer(val) { // correct timer formatting to two digits
+    if (val < 10) {
+        val = "0" + val;
+    }
+
+    return val;
+}
+
 const s_pomodoro = ["focus", "short"];
 const l_pomodoro = ["focus", "long"];
-var f_minutes = "30";
-var s_minutes = "05";
-var l_minutes = "15";
+var f_minutes = formatTimer(get_data.f_duration);
+var s_minutes = formatTimer(get_data.s_duration);
+var l_minutes = formatTimer(get_data.l_duration);
 var seconds = "00";
-var pomo_cycle = 4;
+var pomo_cycle = parseInt(get_data.l_interval);
 
 // Timer Script
 var pomo_log = 0; // record how many pomodoros have elapsed
@@ -150,7 +166,7 @@ while (set[i]) {
                     secs = 60; // reset seconds
                 }
             }
-        }, 1); // test interval; actual interval = 1000ms = 1s
+        }, 10); // test interval; actual interval = 1000ms = 1s
     
         document.getElementById("pause-button").onclick = function pauseTimer() {
             playAudio("media/sounds/snap.wav");
