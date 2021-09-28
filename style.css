@@ -64,19 +64,10 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
-.navbar a:hover {
-    color: beige;
-    transition: .1s;
-}
-
 [aria-current="page"] { /* disable current page's link */
     pointer-events: none;
     cursor: default;
     opacity: .5;
-}
-
-.caption {
-    display: block;
 }
 
 /* Pomodoro Timer */
@@ -106,16 +97,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Components */
 button {
+    margin: 0 4px;
     padding: 16px 32px;
     font-size: 16px;
     color: white;
     border: none;
     border-radius: 4rem;
-}
-
-button:hover {
-    background-color: slategray;
-    transition: .1s;
 }
 
 .ctn-btn {
@@ -147,7 +134,7 @@ button:hover {
 /* Mobile View */
 @media (min-width: 0) {
     .page-title {
-        font-size: 48px;
+        font-size: 36px;
     }
     
     .page-subtitle {
@@ -177,7 +164,7 @@ button:hover {
     }
 
     .navbar a {
-        margin: 8px 20px 0 20px;
+        margin: 8px 24px 0 24px;
     }
 
     .navbar ion-icon {
@@ -185,7 +172,7 @@ button:hover {
     }
 
     .caption {
-        font-size: 12px;
+        display: none;
     }
 }
 
@@ -232,12 +219,17 @@ button:hover {
         margin: 8px 64px 0 64px;
     }
 
+    .navbar a:hover {
+        color: beige;
+        transition: .1s;
+    }
+
     .navbar ion-icon {
         font-size: 32px;
     }
 
     .caption {
-        font-size: 16px;
+        display: block;
     }
 }
 
