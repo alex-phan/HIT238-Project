@@ -18,6 +18,20 @@ function hide(elem) {
     document.getElementById(elem).classList.add("hide");
 }
 
+// Enforce Input Minimum
+function enforceMin(elem) {
+    document.getElementById(elem).addEventListener("change", function() {
+        if (this.value < this.min) {
+            this.value = this.min
+        }
+    })
+}
+
+enforceMin("focus-duration");
+enforceMin("short-duration");
+enforceMin("long-duration");
+enforceMin("long-interval");
+
 // Local Storage
 function updateSettings() {
     f_duration = document.getElementById("focus-duration").value;
