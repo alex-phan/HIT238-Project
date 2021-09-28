@@ -38,12 +38,14 @@ function updateSettings() {
     s_duration = document.getElementById("short-duration").value;
     l_duration = document.getElementById("long-duration").value;
     l_interval = document.getElementById("long-interval").value;
+    speed = document.getElementById("timer-speed").value;
 
     const timer_settings = {
         f_duration: f_duration,
         s_duration: s_duration,
         l_duration: l_duration,
         l_interval: l_interval,
+        speed: speed,
     }
 
     localStorage.setItem("custom-settings", JSON.stringify(timer_settings));
@@ -60,6 +62,7 @@ document.getElementById("focus-duration").defaultValue = get_data.f_duration;
 document.getElementById("short-duration").defaultValue = get_data.s_duration;
 document.getElementById("long-duration").defaultValue = get_data.l_duration;
 document.getElementById("long-interval").defaultValue = get_data.l_interval;
+document.getElementById("timer-speed").defaultValue = get_data.speed;
 
 // Timer Settings
 function formatTimer(val) { // correct timer formatting to two digits
@@ -77,6 +80,9 @@ var s_minutes = formatTimer(get_data.s_duration);
 var l_minutes = formatTimer(get_data.l_duration);
 var seconds = "00";
 var pomo_cycle = parseInt(get_data.l_interval);
+
+// Dev Tools
+var timer_speed = parseInt(get_data.speed);
 
 // Timer Script
 var pomo_log = 0; // record how many pomodoros have elapsed
@@ -180,7 +186,7 @@ while (set[i]) {
                     secs = 60; // reset seconds
                 }
             }
-        }, 10); // test interval; actual interval = 1000ms = 1s
+        }, timer_speed);
     
         document.getElementById("pause-button").onclick = function pauseTimer() {
             playAudio("media/sounds/snap.wav");
