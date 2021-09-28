@@ -31,6 +31,7 @@ enforceMin("focus-duration");
 enforceMin("short-duration");
 enforceMin("long-duration");
 enforceMin("long-interval");
+enforceMin("timer-speed");
 
 // Local Storage
 function updateSettings() {
