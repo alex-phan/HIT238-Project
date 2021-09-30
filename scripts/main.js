@@ -80,6 +80,7 @@ var f_minutes = formatTimer(get_data.f_duration);
 var s_minutes = formatTimer(get_data.s_duration);
 var l_minutes = formatTimer(get_data.l_duration);
 var seconds = "00";
+var pomo_interval = parseInt(get_data.l_interval);
 var pomo_cycle = parseInt(get_data.l_interval);
 
 // Dev Tools
@@ -91,7 +92,7 @@ document.getElementById("pomo-log").innerHTML = pomo_log;
 
 var pomo_count = 1;
 var set;
-if (pomo_count !== pomo_cycle) { // determine starting set
+if (pomo_count < pomo_cycle) { // determine starting set
     set = s_pomodoro;
 } else {
     set = l_pomodoro;
@@ -176,7 +177,7 @@ while (set[i]) {
                                 set = s_pomodoro;
                             } else {
                                 set = l_pomodoro; // next break is a long break
-                                pomo_cycle += pomo_cycle; // add another cycle
+                                pomo_cycle += pomo_interval; // add another cycle
                             }
                         } else {
                             hide("pause-button");
@@ -236,7 +237,7 @@ while (set[i]) {
                 set = s_pomodoro;
             } else {
                 set = l_pomodoro; // next break is a long break
-                pomo_cycle += pomo_cycle; // add another cycle
+                pomo_cycle += pomo_interval; // add another cycle
             }
     
             clearInterval(secs_interval);
